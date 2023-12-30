@@ -1,0 +1,39 @@
+{% extends "admin/change_form.html" %}
+{% load i18n admin_urls static %}
+
+{% block after_field_sets %}
+<div class="qr-code-container">
+    {{ object.qr_code_preview|safe }}
+    <button type="button" class="print-qr-code-button" onclick="window.print();">{% trans "Print QR Code" %}</button>
+</div>
+{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+<style>
+    .qr-code-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .print-qr-code-button {
+        margin-left: 20px;
+        padding: 5px 15px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+        #qr-code {
+            visibility: visible; /* 确保这里的ID与<img>标签的ID匹配 */
+        }
+        #qr-code {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    }
+</style>
+{% endblock %}

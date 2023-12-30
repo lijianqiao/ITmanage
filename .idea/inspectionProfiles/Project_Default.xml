@@ -1,0 +1,169 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="DuplicatedCode" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <Languages>
+        <language minSize="75" name="Python" />
+      </Languages>
+    </inspection_tool>
+    <inspection_tool class="Eslint" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myValues">
+        <value>
+          <list size="13">
+            <item index="0" class="java.lang.String" itemvalue="lay-header-event" />
+            <item index="1" class="java.lang.String" itemvalue="lay-unselect" />
+            <item index="2" class="java.lang.String" itemvalue="lay-filter" />
+            <item index="3" class="java.lang.String" itemvalue="lay-submit" />
+            <item index="4" class="java.lang.String" itemvalue="lay-verify" />
+            <item index="5" class="java.lang.String" itemvalue="hover" />
+            <item index="6" class="java.lang.String" itemvalue="p-id" />
+            <item index="7" class="java.lang.String" itemvalue="user-menu-url" />
+            <item index="8" class="java.lang.String" itemvalue="user-menu-id" />
+            <item index="9" class="java.lang.String" itemvalue="user-menu-title" />
+            <item index="10" class="java.lang.String" itemvalue="loading" />
+            <item index="11" class="java.lang.String" itemvalue="lay-text" />
+            <item index="12" class="java.lang.String" itemvalue="mt-20" />
+          </list>
+        </value>
+      </option>
+      <option name="myCustomValuesEnabled" value="true" />
+    </inspection_tool>
+    <inspection_tool class="HtmlUnknownTag" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myValues">
+        <value>
+          <list size="8">
+            <item index="0" class="java.lang.String" itemvalue="nobr" />
+            <item index="1" class="java.lang.String" itemvalue="noembed" />
+            <item index="2" class="java.lang.String" itemvalue="comment" />
+            <item index="3" class="java.lang.String" itemvalue="noscript" />
+            <item index="4" class="java.lang.String" itemvalue="embed" />
+            <item index="5" class="java.lang.String" itemvalue="script" />
+            <item index="6" class="java.lang.String" itemvalue="lay-form-item" />
+            <item index="7" class="java.lang.String" itemvalue="lay-layer" />
+          </list>
+        </value>
+      </option>
+      <option name="myCustomValuesEnabled" value="true" />
+    </inspection_tool>
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="82">
+            <item index="0" class="java.lang.String" itemvalue="librabbitmq" />
+            <item index="1" class="java.lang.String" itemvalue="tzlocal" />
+            <item index="2" class="java.lang.String" itemvalue="PyYAML" />
+            <item index="3" class="java.lang.String" itemvalue="MyApplication" />
+            <item index="4" class="java.lang.String" itemvalue="kombu" />
+            <item index="5" class="java.lang.String" itemvalue="MarkupSafe" />
+            <item index="6" class="java.lang.String" itemvalue="ntc-templates" />
+            <item index="7" class="java.lang.String" itemvalue="textfsm" />
+            <item index="8" class="java.lang.String" itemvalue="coreschema" />
+            <item index="9" class="java.lang.String" itemvalue="frozenlist" />
+            <item index="10" class="java.lang.String" itemvalue="djangorestframework-simplejwt" />
+            <item index="11" class="java.lang.String" itemvalue="pycryptodomex" />
+            <item index="12" class="java.lang.String" itemvalue="lxml" />
+            <item index="13" class="java.lang.String" itemvalue="soupsieve" />
+            <item index="14" class="java.lang.String" itemvalue="PyQRCode" />
+            <item index="15" class="java.lang.String" itemvalue="vine" />
+            <item index="16" class="java.lang.String" itemvalue="wxpy" />
+            <item index="17" class="java.lang.String" itemvalue="beautifulsoup4" />
+            <item index="18" class="java.lang.String" itemvalue="scp" />
+            <item index="19" class="java.lang.String" itemvalue="cache" />
+            <item index="20" class="java.lang.String" itemvalue="Werkzeug" />
+            <item index="21" class="java.lang.String" itemvalue="djangorestframework-jwt" />
+            <item index="22" class="java.lang.String" itemvalue="asgiref" />
+            <item index="23" class="java.lang.String" itemvalue="click" />
+            <item index="24" class="java.lang.String" itemvalue="APScheduler" />
+            <item index="25" class="java.lang.String" itemvalue="psutil" />
+            <item index="26" class="java.lang.String" itemvalue="pip-review" />
+            <item index="27" class="java.lang.String" itemvalue="paramiko" />
+            <item index="28" class="java.lang.String" itemvalue="IPy" />
+            <item index="29" class="java.lang.String" itemvalue="WorkWeixinRobot" />
+            <item index="30" class="java.lang.String" itemvalue="charset-normalizer" />
+            <item index="31" class="java.lang.String" itemvalue="pysnmp" />
+            <item index="32" class="java.lang.String" itemvalue="PyMySQL" />
+            <item index="33" class="java.lang.String" itemvalue="itchat" />
+            <item index="34" class="java.lang.String" itemvalue="msgpack" />
+            <item index="35" class="java.lang.String" itemvalue="idna" />
+            <item index="36" class="java.lang.String" itemvalue="pyftpdlib" />
+            <item index="37" class="java.lang.String" itemvalue="netmiko" />
+            <item index="38" class="java.lang.String" itemvalue="PyJWT" />
+            <item index="39" class="java.lang.String" itemvalue="pysmi" />
+            <item index="40" class="java.lang.String" itemvalue="wcwidth" />
+            <item index="41" class="java.lang.String" itemvalue="pycodestyle" />
+            <item index="42" class="java.lang.String" itemvalue="py4j" />
+            <item index="43" class="java.lang.String" itemvalue="requests" />
+            <item index="44" class="java.lang.String" itemvalue="click-didyoumean" />
+            <item index="45" class="java.lang.String" itemvalue="importlib-metadata" />
+            <item index="46" class="java.lang.String" itemvalue="Jinja2" />
+            <item index="47" class="java.lang.String" itemvalue="celery" />
+            <item index="48" class="java.lang.String" itemvalue="zipp" />
+            <item index="49" class="java.lang.String" itemvalue="tenacity" />
+            <item index="50" class="java.lang.String" itemvalue="prompt-toolkit" />
+            <item index="51" class="java.lang.String" itemvalue="tomli" />
+            <item index="52" class="java.lang.String" itemvalue="urllib3" />
+            <item index="53" class="java.lang.String" itemvalue="djangorestframework" />
+            <item index="54" class="java.lang.String" itemvalue="itsdangerous" />
+            <item index="55" class="java.lang.String" itemvalue="django-cors-headers" />
+            <item index="56" class="java.lang.String" itemvalue="billiard" />
+            <item index="57" class="java.lang.String" itemvalue="Flask" />
+            <item index="58" class="java.lang.String" itemvalue="uritemplate" />
+            <item index="59" class="java.lang.String" itemvalue="autopep8" />
+            <item index="60" class="java.lang.String" itemvalue="pypng" />
+            <item index="61" class="java.lang.String" itemvalue="popen" />
+            <item index="62" class="java.lang.String" itemvalue="amqp" />
+            <item index="63" class="java.lang.String" itemvalue="tzdata" />
+            <item index="64" class="java.lang.String" itemvalue="packaging" />
+            <item index="65" class="java.lang.String" itemvalue="pyserial" />
+            <item index="66" class="java.lang.String" itemvalue="pytz-deprecation-shim" />
+            <item index="67" class="java.lang.String" itemvalue="chardet" />
+            <item index="68" class="java.lang.String" itemvalue="coreapi" />
+            <item index="69" class="java.lang.String" itemvalue="watchdog" />
+            <item index="70" class="java.lang.String" itemvalue="colorama" />
+            <item index="71" class="java.lang.String" itemvalue="Django" />
+            <item index="72" class="java.lang.String" itemvalue="future" />
+            <item index="73" class="java.lang.String" itemvalue="itypes" />
+            <item index="74" class="java.lang.String" itemvalue="aiohttp" />
+            <item index="75" class="java.lang.String" itemvalue="multidict" />
+            <item index="76" class="java.lang.String" itemvalue="yarl" />
+            <item index="77" class="java.lang.String" itemvalue="click-repl" />
+            <item index="78" class="java.lang.String" itemvalue="click-plugins" />
+            <item index="79" class="java.lang.String" itemvalue="ply" />
+            <item index="80" class="java.lang.String" itemvalue="aiosignal" />
+            <item index="81" class="java.lang.String" itemvalue="findspark" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyPep8Inspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="W605" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyPep8NamingInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="N801" />
+          <option value="N802" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="map.*" />
+          <option value="collections.OrderedDict.*" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="SpellCheckingInspection" enabled="false" level="TYPO" enabled_by_default="false">
+      <option name="processCode" value="true" />
+      <option name="processLiterals" value="true" />
+      <option name="processComments" value="true" />
+    </inspection_tool>
+    <inspection_tool class="Stylelint" enabled="true" level="ERROR" enabled_by_default="true" />
+  </profile>
+</component>

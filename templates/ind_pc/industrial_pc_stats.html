@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>工控机统计图表</title>
+</head>
+
+<body>
+
+    <div id="pie_hardening" style="width: 35%; height: 10%; display: inline-block;">{{ pie_hardening_html|safe }}</div>
+    <div id="pie_network" style="width: 35%; height: 10%; display: inline-block;">{{ pie_network_html|safe }}</div>
+    <div id="pie_backup" style="width: 35%; height: 10%; display: inline-block;">{{ pie_backup_html|safe }}</div>
+    <div id="pie_collection" style="width: 35%; height: 10%; display: inline-block;">{{ pie_collection_html|safe }}
+    </div>
+
+</body>
+
+</html>

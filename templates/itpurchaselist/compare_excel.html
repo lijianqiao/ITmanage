@@ -1,0 +1,41 @@
+<!-- compare_excel.html -->
+
+<h1>IT台账核对</h1>
+<p>1. 第一个“选择文件”为手工登记的台账，因为是根据台账去对比第二个上传的文件</p>
+<p>2. 第二个“选择文件”上传选择从OA导出的表或者从dhcp服务器导出的csv表格</p>
+<p>3. 所有表里面的列必须包含“电脑编号”，“IP地址”，“MAC地址”，列名大小写都不能变，必须为大写</p>
+<p>4. 匹配规则，是根据第一个上传的文件中的电脑编号，去匹配第二个上传文件中同样电脑编号的IP地址、MAC地址是否与第一个表相同，如果不同则返回结果</p>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="file1" required>
+    <input type="file" name="file2" required>
+    <button type="submit">上传</button>
+</form>
+
+{% if error %}
+    <div class="error">{{ error }}</div>
+{% endif %}
+
+{% if comparison_result %}
+    <table>
+        <thead>
+            <tr>
+                <th>电脑编号</th>
+                <th>差异</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for result in comparison_result %}
+                <tr>
+                    <td>{{ result.电脑编号 }}</td>
+                    <td>
+                        {% for key, diff in result.差异.items %}
+                            <strong>{{ key }}:</strong> 表1: {{ diff.表1 }} | 表2: {{ diff.表2 }}<br>
+                        {% endfor %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <title>WebSSH</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm/css/xterm.css" />
+    <script src="https://cdn.jsdelivr.net/npm/xterm/lib/xterm.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xterm-addon-fit/lib/xterm-addon-fit.js"></script>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            /* 防止页面滚动 */
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        input[type=text],
+        input[type=password] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        /* 取消按钮的特别样式 */
+        .cancelbtn {
+            width: auto;
+            padding: 10px 18px;
+            background-color: #f44336;
+        }
+
+        /* 提示框样式 */
+        .alert-box {
+            display: none;
+            /* 默认不显示 */
+            position: fixed;
+            /* 固定定位 */
+            top: 50%;
+            /* 距离顶部50% */
+            left: 50%;
+            /* 距离左边50% */
+            transform: translate(-50%, -50%);
+            /* 使用 transform 属性使其居中 */
+            background-color: rgba(248, 215, 218, 0.4);
+            /* 浅红色背景，60%透明度 */
+            color: #5c2229;
+            /* 文字颜色 */
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+            padding: 10px 20px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+
+
+        #terminal {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 提示框 -->
+    <div id="alertBox" class="alert-box">
+        连接失败！请刷新该页面或者关闭重新打开之后, 重新连接。
+    </div>
+    <!-- 连接中提示框 -->
+    <div id="successBox" class="alert-box"
+        style="background-color: rgba(186, 226, 195, 0.4); color: #ffffff; border-color: #c3e6cb;">
+        连接中.....
+    </div>
+    <!-- 错误提示框 -->
+    <div id="errorBox" class="alert-box"
+        style="background-color: rgba(248, 215, 218, 0.4); color: #ffffff; border-color: #f5c6cb;">
+        账号或者密码错误，连接失败！请刷新该页面或者关闭重新打开之后, 重新连接。
+    </div>
+    <!-- 模态框（Modal） -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div>
+                <label for="username">用户名：</label>
+                <input type="text" id="username" name="username" value="opcdjr" required>
+            </div>
+            <div>
+                <label for="password">密码：</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div>
+                <label for="port">端口号：</label>
+                <input type="text" id="port" name="port" value="22" required>
+            </div>
+            <button type="submit" onclick="submitLoginForm()">连接</button>
+            <button type="button" onclick="closeModal()" class="cancelbtn">取消</button>
+        </div>
+    </div>
+
+    <!-- 终端容器 -->
+    <div id="terminal"></div>
+
+    <script>
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const ip = urlParams.get('ip'); // 从 URL 获取 IP 地址
+        let attemptedToConnect = false;
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // 显示模态框
+            document.getElementById('loginModal').style.display = "block";
+        });
+
+        // 当用户点击模态框之外的区域时，关闭模态框
+        window.onclick = function (event) {
+            const modal = document.getElementById('loginModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // 显示提示框的函数
+        function showAlert() {
+            var alertBox = document.getElementById('alertBox');
+            alertBox.style.display = 'block';
+
+            // 3秒后自动隐藏提示框
+            setTimeout(function () {
+                alertBox.style.display = 'none';
+            }, 3000);
+        }
+
+        // 显示连接中提示框的函数
+        function showSuccess() {
+            var successBox = document.getElementById('successBox');
+            successBox.style.display = 'block';
+
+            // 1.2秒后自动隐藏提示框
+            setTimeout(function () {
+                successBox.style.display = 'none';
+            }, 1200);
+        }
+
+        // 显示错误提示框的函数
+        function showError() {
+            var errorBox = document.getElementById('errorBox');
+            errorBox.style.display = 'block';
+
+            // 3秒后自动隐藏提示框
+            setTimeout(function () {
+                errorBox.style.display = 'none';
+            }, 3000);
+        }
+
+        // webssh登录
+        function submitLoginForm() {
+            // 获取用户输入的数据
+            event.preventDefault(); // 阻止表单默认提交
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const port = document.getElementById('port').value;
+
+            // 设置 attemptedToConnect 为 true，表示用户已尝试连接
+            attemptedToConnect = true;
+
+            // 创建 WebSocket 连接
+            const socket = new WebSocket(`ws://${window.location.host}/ws/webssh/${ip}/`);
+
+            // 初始化 xterm.js 终端
+            const term = new Terminal({
+                cursorBlink: true, // 光标闪烁
+            });
+            const fitAddon = new FitAddon.FitAddon();
+            term.loadAddon(fitAddon);
+            term.open(document.getElementById('terminal'));
+            fitAddon.fit();
+
+            window.addEventListener('resize', () => {
+                fitAddon.fit();
+            });
+
+            term.onData(function (data) {
+                if (socket.readyState === WebSocket.OPEN) {
+                    socket.send(data);
+                }
+            });
+
+            socket.onopen = function () {
+                socket.send(JSON.stringify({
+                    'command': 'connect',
+                    'username': username || 'opcdjr',
+                    'password': password,
+                    'ip_address': ip,
+                    'port': port || '22' // 如果没有提供端口，则使用默认端口 22
+                }));
+                term.writeln(
+                    "******************************************************************"
+                );
+                showSuccess(); // 显示连接中消息
+                document.getElementById('terminal').style.display = 'block'; // 显示终端
+                closeModal(); // 关闭模态框
+            };
+
+            socket.onmessage = function (event) {
+                term.write(event.data);
+                // 检查服务器返回的消息是否指示连接失败
+                if (event.data.includes("Authentication failed.")) {
+                    showError(); // 显示账号或密码错误消息
+                    socket.close(); // 主动关闭 WebSocket 连接
+                }
+            };
+
+            socket.onerror = function (event) {
+                console.error("观察到 WebSocket 错误:", event);
+                console.log(event)
+                showError(); // 显示账号或密码错误消息
+            };
+
+            socket.onclose = function (event) {
+                showError(); // 显示账号或密码错误消息
+                if (!event.wasClean) {
+                    console.log('尝试重新连接...');
+                    closeModal(); // 如果 WebSocket 关闭不是正常的，显示提示框
+                    setTimeout(connectToWebSocket, 3000); // 3秒后重连
+                }
+            };
+
+        }
+
+        // 关闭模态框的函数
+        function closeModal() {
+            document.getElementById('loginModal').style.display = "none"; // 关闭模态框
+            // 如果已经尝试过连接，显示连接失败的提示
+            if (!attemptedToConnect) {
+                showAlert();
+            }
+        }
+    </script>
+</body>
+
+</html>

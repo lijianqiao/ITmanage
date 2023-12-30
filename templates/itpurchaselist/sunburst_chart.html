@@ -1,0 +1,13 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>基地部门备件类型分析</title>
+    <script src="{% static 'echarts/echarts.min.js' %}"></script>
+    {{ chart|safe }}
+</head>
+<body>
+    <div id="main" style="width: 1000px;height:600px;"></div>
+</body>
+</html>

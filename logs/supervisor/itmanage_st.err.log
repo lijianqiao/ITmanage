@@ -1,0 +1,51 @@
+2023-12-28 08:54:00.507 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/lijianqiao/programfiles/data/envs/ITmanage/lib/python3.11/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 534, in _run_script
+    exec(code, module.__dict__)
+  File "/projects/ITmanage/streamlit/st.py", line 707, in <module>
+    main()
+  File "/projects/ITmanage/streamlit/st.py", line 701, in main
+    app.run()
+  File "/projects/ITmanage/streamlit/st.py", line 555, in run
+    input_question = st.text_input('请输入您的问题：')
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lijianqiao/programfiles/data/envs/ITmanage/lib/python3.11/site-packages/streamlit/runtime/metrics_util.py", line 396, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lijianqiao/programfiles/data/envs/ITmanage/lib/python3.11/site-packages/streamlit/elements/widgets/text_widgets.py", line 221, in text_input
+    return self._text_input(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/lijianqiao/programfiles/data/envs/ITmanage/lib/python3.11/site-packages/streamlit/elements/widgets/text_widgets.py", line 318, in _text_input
+    widget_state = register_widget(
+                   ^^^^^^^^^^^^^^^^
+  File "/home/lijianqiao/programfiles/data/envs/ITmanage/lib/python3.11/site-packages/streamlit/runtime/state/widgets.py", line 161, in register_widget
+    return register_widget_from_metadata(metadata, ctx, widget_func_name, element_type)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lijianqiao/programfiles/data/envs/ITmanage/lib/python3.11/site-packages/streamlit/runtime/state/widgets.py", line 206, in register_widget_from_metadata
+    raise DuplicateWidgetID(
+streamlit.errors.DuplicateWidgetID: There are multiple identical `st.text_input` widgets with the
+same generated key.
+
+When a widget is created, it's assigned an internal key based on
+its structure. Multiple widgets with an identical structure will
+result in the same internal key, which causes this error.
+
+To fix this error, please pass a unique `key` argument to
+`st.text_input`.
+2023-12-28 09:05:26.611 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/lijianqiao/programfiles/data/envs/ITmanage/lib/python3.11/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 534, in _run_script
+    exec(code, module.__dict__)
+  File "/projects/ITmanage/streamlit/st.py", line 666, in <module>
+    main()
+  File "/projects/ITmanage/streamlit/st.py", line 660, in main
+    app.run()
+  File "/projects/ITmanage/streamlit/st.py", line 563, in run
+    answer, _ = self.find_answer(input_question)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/projects/ITmanage/streamlit/st.py", line 537, in find_answer
+    self.record_new_question(input_question)
+  File "/projects/ITmanage/streamlit/st.py", line 542, in record_new_question
+    with open("./st/new_questions.txt", "a", encoding='utf-8') as file:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: './st/new_questions.txt'
